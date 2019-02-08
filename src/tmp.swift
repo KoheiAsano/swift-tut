@@ -1,18 +1,24 @@
-import Foundation
-
-//encode, initメソッドの定義はコンパイラが自動生成(IntもCodable故)
-struct SomeStruct : Codable {
-  let value: Int
+func isEqual<T : Equatable>(_ x: T, _ y: T) -> Bool {
+  return x == y
 }
 
-let someStruct = SomeStruct(value: 1)
+func sorted<T : Collection>(_ A: T) -> [T.Element]
+  where T.Element : Comparable{
+  return A.sorted()
+}
 
-let jsonEncoder = JSONEncoder()
-let encodedJSONData = try! jsonEncoder.encode(someStruct)
-let encodedJSONString = String(data: encodedJSONData,
-  encoding: .utf8)!
-print("Encoded:", encodedJSONString)
+func concat<T: Collection, U : Collection>(_ arg0:T, _ arg1:U) ->[T.Element]
+where T.Element == U.Element{
+  return Array(arg0) + Array(arg1)
+}
 
-let jsonDecoder = JSONDecoder()
-let decodedSomeStruct = try! jsonDecoder.decode(SomeStruct.self, from: encodedJSONData)
-print("Decoded:", decodedSomeStruct)
+
+
+var array = [1,3,2]
+let array0 = [1,3,2]
+print(isEqual(array, array0))
+array = sorted(array)
+print(array)
+let se = Set([1,2,3])
+let result = concat(array, se)
+print(result)
