@@ -31,7 +31,7 @@ client.send(request: request) {result in
     exit(1)
   }
 }
-let timeoutInterval = 60
+let timeoutInterval: TimeInterval = 60
 
 Thread.sleep(forTimeInterval: timeoutInterval)
 
